@@ -13,6 +13,6 @@ spec:
     ref: master
   values:
     image:
-      repository: ariko14/echoapp
+      repository: eu.gcr.io/intense-pixel-314120/chat
       tag: dev-jkudpb2w
     replicaCount: 1
