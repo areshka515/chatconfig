@@ -9,7 +9,7 @@ spec:
   releaseName: chatapp-dev
   chart:
     git: git@github.com:areshka515/chatconfig
-    path: helmAPP
+    path: helmapp
     ref: master
   values:
     image:
