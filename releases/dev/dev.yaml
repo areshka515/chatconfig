@@ -1,0 +1,18 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: chatapp-dev
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: glob:dev-*
+spec:
+  releaseName: chatapp-dev
+  chart:
+    git: git@github.com:areshka515/chatconfig
+    path: helmAPP
+    ref: master
+  values:
+    image:
+      repository: ariko14/echoapp
+      tag: dev-jkudpb2w
+    replicaCount: 1

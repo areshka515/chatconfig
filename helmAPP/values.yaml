@@ -1,0 +1,3 @@
+image:
+  repository: eu.gcr.io/intense-pixel-314120/chat
+  tag: latest

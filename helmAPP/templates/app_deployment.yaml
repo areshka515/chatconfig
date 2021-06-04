@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chatapp
+  labels:
+    app: chatapp
+spec:
+  selector:
+    matchLabels:
+      app: chatapp
+
+  template:
+    metadata:
+      name: chatapp
+      labels:
+        app: chatapp
+
+    spec:
+      containers:
+      - name: chatapp
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        #eu.gcr.io/intense-pixel-314120/chat
