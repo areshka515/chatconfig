@@ -20,7 +20,7 @@ spec:
           image: kibana:6.8.15
           env:
             - name: ELASTICSEARCH_URL
-              value: http://elasticsearch:9200
+              value: http://elasticsearch.database:9200
           ports:
             - name: kibana-ui
               containerPort: 5601
