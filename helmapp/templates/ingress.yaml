@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: chatapp
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    #kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "chatapp"
+spec:
+  tls:
+  - hosts:
+    - "arielchat.tk"
+    secretName: chat-key
+  rules:
+  - host: "arielchat.tk"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: "chatapp"
+            port:
+              number: 8081

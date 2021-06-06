@@ -5,10 +5,6 @@ metadata:
 spec:
   selector:
     app: chatapp
-  #clusterIP: None
-  type: LoadBalancer
   ports:
-  - protocol: TCP
-    port: 8081
+  - port: 8081
     targetPort: 8081
-  #type: LoadBalancer
