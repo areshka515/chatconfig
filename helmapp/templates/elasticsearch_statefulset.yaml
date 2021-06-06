@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: elasticsearch
+  namespace: database
   labels:
     app: elasticsearch
 
@@ -11,6 +12,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: elasticsearch
+  namespace: database
 rules:
 - apiGroups:
   - ""
@@ -27,6 +29,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: elasticsearch
+  namespace: database
 subjects:
 - kind: ServiceAccount
   name: elasticsearch
@@ -41,6 +44,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: elasticsearch
+  namespace: database
   labels:
     app: elasticsearch
 spec:
