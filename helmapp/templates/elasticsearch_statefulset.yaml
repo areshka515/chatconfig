@@ -1,0 +1,81 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: elasticsearch
+  labels:
+    app: elasticsearch
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: elasticsearch
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - "services"
+  - "namespaces"
+  - "endpoints"
+  verbs:
+  - "get"
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: elasticsearch
+subjects:
+- kind: ServiceAccount
+  name: elasticsearch
+roleRef:
+  kind: Role
+  name: elasticsearch
+  apiGroup: rbac.authorization.k8s.io
+
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: elasticsearch
+  labels:
+    app: elasticsearch
+spec:
+  serviceName: elasticsearch
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elasticsearch
+  template:
+    metadata:
+      labels:
+        app: elasticsearch
+    spec:
+      serviceAccountName: elasticsearch
+      containers:
+        - name: elasticsearch
+          #image: "docker.elastic.co/elasticsearch/elasticsearch:6.2.4"
+          image: elasticsearch:6.8.15
+          volumeMounts:
+          - name: elasticsearch
+            mountPath: /data
+          env:
+          - name: "NAMESPACE"
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+      volumes:
+      - name: elasticsearch
+        emptyDir: {}
+      # Elasticsearch requires vm.max_map_count to be at least 262144.
+      # If your OS already sets up this number to a higher value, feel free
+      # to remove this init container.
+      initContainers:
+      - image: alpine:3.6
+        command: ["/sbin/sysctl", "-w", "vm.max_map_count=262144"]
+        name: elasticsearch-init
+        securityContext:
+          privileged: true

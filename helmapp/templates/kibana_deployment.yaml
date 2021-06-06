@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kibana
+  labels:
+    app: kibana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kibana
+  template:
+    metadata:
+      labels:
+        app: kibana
+    spec:
+      containers:
+        - name: kibana
+          #image: "docker.elastic.co/kibana/kibana:6.2.4"
+          image: kibana:6.8.15
+          env:
+            - name: ELASTICSEARCH_URL
+              value: http://elasticsearch:9200
+          ports:
+            - name: kibana-ui
+              containerPort: 5601
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: kibana-ui
+            initialDelaySeconds: 45
+          readinessProbe:
+            httpGet:
+              path: /
+              port: kibana-ui
+            initialDelaySeconds: 40
