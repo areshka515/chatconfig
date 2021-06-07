@@ -7,6 +7,6 @@ data:
   ENV_DB_DATABASE: "chats"
   ENV_DB_USER: "root"
   ENV_DB_PASSWORD: "password"
-  ENV_USINGDB: True
-  ENV_AUTOCOMMIT: True
+  ENV_USINGDB: "True"
+  ENV_AUTOCOMMIT: "True"
   ENV_DB_RETRY: "6"
