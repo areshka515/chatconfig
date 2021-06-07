@@ -21,9 +21,6 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
 
         env:
-        - name: ENV_DATABASE
-          value: True
-
         - name: ENV_DB_HOST
           value: "mysql.database"
 
