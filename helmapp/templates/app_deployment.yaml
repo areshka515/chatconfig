@@ -19,4 +19,20 @@ spec:
       containers:
       - name: chatapp
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+
+        env:
+        - name: ENV_DATABASE
+          value: True
+
+        - name: ENV_DB_HOST
+          value: mysql.database
+
+        - name: ENV_DB_USER
+          value: root
+
+        - name: ENV_DB_PASSWORD
+          value: password
+
+        - name: ENV_DB_DATABASE
+          value: chats
         #eu.gcr.io/intense-pixel-314120/chat
