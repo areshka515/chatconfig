@@ -23,4 +23,6 @@ spec:
         envFrom:
         - configMapRef:
             name: chatapp
+        - secretRef:
+            name: chatapp
         #eu.gcr.io/intense-pixel-314120/chat

@@ -5,7 +5,5 @@ metadata:
 data:
   ENV_DB_HOST: "mysql.database"
   ENV_DB_DATABASE: "chats"
-  ENV_DB_USER: "root"
-  ENV_DB_PASSWORD: "password"
   ENV_USINGDB: "True"
   ENV_DB_RETRY: "6"
