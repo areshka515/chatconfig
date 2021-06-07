@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: chatapp
+  name: chatapp-config
 data:
   ENV_DB_HOST: "mysql.database"
   ENV_DB_DATABASE: "chats"
