@@ -15,5 +15,5 @@ spec:
   values:
     image:
       repository: eu.gcr.io/intense-pixel-314120/chat
-      tag: dev-832574
+      tag: dev-a760a2
     replicaCount: 1
